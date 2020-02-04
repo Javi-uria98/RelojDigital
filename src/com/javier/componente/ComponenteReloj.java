@@ -6,19 +6,22 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.time.ZonedDateTime;
+import java.util.*;
 
 public class ComponenteReloj extends Label {
 
-    private IntegerProperty minutos;
-    private IntegerProperty horas;
+    private int horas;
+    private int minutos;
+    private int segundos;
+    private ArrayList<Tarea> listaTareas;
+    private ArrayList<EnHoraQueCoincide> enHoraQueCoincide;
 
     public ComponenteReloj() {
-        super();
+        enHoraQueCoincide = new ArrayList<EnHoraQueCoincide>();
+        listaTareas = new ArrayList<Tarea>();
     }
 
     public ComponenteReloj(String s) {
@@ -29,28 +32,32 @@ public class ComponenteReloj extends Label {
         super(s, node);
     }
 
-    public int getMinutos() {
-        return minutos.get();
-    }
-
-    public IntegerProperty minutosProperty() {
-        return minutos;
-    }
-
-    public void setMinutos(int minutos) {
-        this.minutos.set(minutos);
+    public void addEnHoraQueCoincide(EnHoraQueCoincide enHoraQueCoincide) {
+        this.enHoraQueCoincide.add(enHoraQueCoincide);
     }
 
     public int getHoras() {
-        return horas.get();
-    }
-
-    public IntegerProperty horasProperty() {
         return horas;
     }
 
     public void setHoras(int horas) {
-        this.horas.set(horas);
+        this.horas = horas;
+    }
+
+    public int getMinutos() {
+        return minutos;
+    }
+
+    public void setMinutos(int minutos) {
+        this.minutos = minutos;
+    }
+
+    public int getSegundos() {
+        return segundos;
+    }
+
+    public void setSegundos(int segundos) {
+        this.segundos = segundos;
     }
 
     public void iniciar() {
@@ -63,9 +70,21 @@ public class ComponenteReloj extends Label {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
-                            Calendar rightNow = Calendar.getInstance();
-                            int hour = rightNow.get(Calendar.HOUR_OF_DAY);
+                            ZonedDateTime now = ZonedDateTime.now();
+                            horas = now.getHour();
+                            minutos = now.getMinute();
+                            segundos = now.getSecond();
+                            if (listaTareas != null) {
+                                for (Tarea tarea : listaTareas) {
+                                    setText(horas + ":" + minutos + ":" + segundos);
+                                    if (horas == tarea.getHoras() && minutos == tarea.getMinutos() && segundos == tarea.getSegundos()) {
+                                        for (EnHoraQueCoincide e : enHoraQueCoincide) {
+                                            e.ejecuta(tarea);
+                                        }
+                                    }
 
+                                }
+                            }
                         }
                     });
 
@@ -74,7 +93,15 @@ public class ComponenteReloj extends Label {
                     timer.purge();
                 }
             }
-        }, 1000, 1000);
+        }, 0, 1000);
 
+    }
+
+    public void registarTarea(Tarea tarea) {
+        listaTareas.add(tarea);
+    }
+
+    public void borrarTarea(Tarea tarea) {
+        listaTareas.remove(tarea);
     }
 }

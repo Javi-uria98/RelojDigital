@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="RelojDigital:jar2">
+    <output-path>$PROJECT_DIR$/out/artifacts/RelojDigital_jar2</output-path>
+    <root id="archive" name="RelojDigital.jar">
+      <element id="module-output" name="RelojDigital" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/activation.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/javafx-sdk-13/lib/javax.mail.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

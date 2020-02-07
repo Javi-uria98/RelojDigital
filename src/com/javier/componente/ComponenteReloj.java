@@ -90,27 +90,28 @@ public class ComponenteReloj extends Label {
                             horas = now.getHour();
                             minutos = now.getMinute();
                             segundos = now.getSecond();
+                            DecimalFormat formatter = new DecimalFormat("00");
+                            if (formato24h.get() || horas<12) {
+                                setText(formatter.format(horas) + ":" + formatter.format(minutos) + ":" + formatter.format(segundos));
+                            } else {
+                                horas = horas - 12;
+                                setText(formatter.format(horas) + ":" + formatter.format(minutos) + ":" + formatter.format(segundos));
+                            }
                             if (listaTareas != null) {
                                 for (Tarea tarea : listaTareas) {
-                                    DecimalFormat formatter = new DecimalFormat("00");
-                                    if (formato24h.get()) {
-                                        setText(formatter.format(horas) + ":" + formatter.format(minutos) + ":" + formatter.format(segundos));
-                                        if (horas == tarea.getHoras() && minutos == tarea.getMinutos() && segundos == tarea.getSegundos()) {
-                                            for (EnHoraQueCoincide e : enHoraQueCoincide) {
-                                                e.ejecuta(tarea);
-                                            }
+                                    if (horas == tarea.getHoras() && minutos == tarea.getMinutos() && segundos == tarea.getSegundos()) {
+                                        for (EnHoraQueCoincide e : enHoraQueCoincide) {
+                                            e.ejecuta(tarea);
                                         }
-                                    } else if (horas >= 12) {
-                                        horas = horas - 12;
-                                        setText(formatter.format(horas) + ":" + formatter.format(minutos) + ":" + formatter.format(segundos));
-                                        if (horas == tarea.getHoras()-12 && minutos == tarea.getMinutos() && segundos == tarea.getSegundos()) {
+                                    } else {
+                                        if (horas == tarea.getHoras() - 12 && minutos == tarea.getMinutos() && segundos == tarea.getSegundos()) {
                                             for (EnHoraQueCoincide e : enHoraQueCoincide) {
                                                 e.ejecuta(tarea);
                                             }
                                         }
                                     }
-
                                 }
+
                             }
                         }
                     });

@@ -16,8 +16,8 @@ public class MainWindoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Tarea tarea=new Tarea(18, 1, 20, "Alarma comprar pan");
-        Tarea tarea2=new Tarea(18, 1, 25, "Alarma comprar leche");
+        Tarea tarea=new Tarea(2, 24, 20, "Alarma comprar pan");
+        Tarea tarea2=new Tarea(2, 24, 25, "Alarma comprar leche");
         cp.registarTarea(tarea);
         cp.registarTarea(tarea2);
         cp.borrarTarea(tarea);

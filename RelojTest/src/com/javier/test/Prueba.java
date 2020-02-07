@@ -18,9 +18,9 @@ public class Prueba extends Application {
     public void start(Stage stage) throws Exception {
         VBox vBox=new VBox();
         ComponenteReloj cp=new ComponenteReloj();
-        //Tarea tarea = new Tarea(2, 19, 25 , "pruebaAlarma");
-        cp.setFormato24h(false);
-        //cp.registarTarea(tarea);
+        Tarea tarea = new Tarea(16, 43, 50 , "pruebaAlarma");
+        cp.setFormato24h(true);
+        cp.registarTarea(tarea);
         cp.addEnHoraQueCoincide(new EnHoraQueCoincide() {
             @Override
             public void ejecuta(Tarea tarea) {

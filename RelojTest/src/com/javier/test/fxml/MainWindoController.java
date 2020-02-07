@@ -16,11 +16,11 @@ public class MainWindoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Tarea tarea=new Tarea(2, 24, 20, "Alarma comprar pan");
-        Tarea tarea2=new Tarea(2, 24, 25, "Alarma comprar leche");
+        Tarea tarea=new Tarea(16, 49, 20, "Alarma comprar pan");
+        Tarea tarea2=new Tarea(16, 49, 25, "Alarma comprar leche");
         cp.registarTarea(tarea);
         cp.registarTarea(tarea2);
-        cp.borrarTarea(tarea);
+        cp.borrarTarea(tarea2);
         cp.addEnHoraQueCoincide(new EnHoraQueCoincide() {
             @Override
             public void ejecuta(Tarea tarea) {
